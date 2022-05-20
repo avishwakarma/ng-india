@@ -1,0 +1,28 @@
+@import "../../../styles/variables";
+
+.register {
+  .box {
+    width: 539px;
+
+    .form {
+      margin-top: 24px;
+    }
+
+    .col {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      column-gap: 18px;
+    }
+  }
+
+  .help {
+    text-align: center;
+    margin-top: 24px;
+    color: rgba($black, 0.5);
+
+    a {
+      font-weight: 600;
+    }
+  }
+}

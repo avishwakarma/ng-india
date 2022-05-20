@@ -1,0 +1,5 @@
+<div class="layout" [ngClass]="{ isLoggedIn: isLoggedIn }">
+  <ng-india-toast></ng-india-toast>
+  <ng-india-nav *ngIf="isLoggedIn"></ng-india-nav>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,44 @@
+<div class="login">
+  <div class="vcenter" style="height: 100vh">
+    <div class="wrap">
+      <div class="box">
+        <p class="f18 w600">Sign into your account</p>
+
+        <form class="form" [formGroup]="loginForm" (submit)="login()">
+          <div class="fr">
+            <label>Workspace</label>
+            <input
+              type="text"
+              placeholder="Enter your workspace"
+              formControlName="workspace"
+            />
+          </div>
+          <div class="fr">
+            <label>Email address</label>
+            <input
+              type="text"
+              placeholder="Enter your email address"
+              formControlName="email"
+            />
+          </div>
+          <div class="fr">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              formControlName="password"
+            />
+          </div>
+          <div class="fr">
+            <button type="submit" class="full" [disabled]="!loginForm.valid">
+              Login secuerly
+            </button>
+          </div>
+        </form>
+      </div>
+      <p class="help">
+        Don't have an account? <a routerLink="/auth/register">Register</a>
+      </p>
+    </div>
+  </div>
+</div>

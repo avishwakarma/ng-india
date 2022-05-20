@@ -1,0 +1,84 @@
+<div class="register">
+  <div class="vcenter" style="height: 100vh">
+    <div class="wrap">
+      <div class="box">
+        <p class="f18 w600">Register for a free account</p>
+
+        <form class="form" [formGroup]="registerForm" (submit)="register()">
+          <div class="col">
+            <div class="fr">
+              <label class="has-loader"
+                >Workspace
+                <span
+                  *ngIf="workspace?.pending"
+                  class="lds-ellipsis"
+                  style="margin-left: 10px"
+                  ><div></div>
+                  <div></div>
+                  <div></div></span
+              ></label>
+              <input
+                type="text"
+                placeholder="Enter your workspace"
+                formControlName="workspace"
+              />
+            </div>
+            <div class="fr">
+              <label>Company</label>
+              <input
+                type="text"
+                placeholder="Enter your company name"
+                formControlName="company"
+              />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="fr">
+              <label>First name</label>
+              <input
+                type="text"
+                placeholder="Enter your first name"
+                formControlName="firstName"
+              />
+            </div>
+            <div class="fr">
+              <label>Last name</label>
+              <input
+                type="text"
+                placeholder="Enter your last name"
+                formControlName="lastName"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <div class="fr">
+              <label>Email address</label>
+              <input
+                type="text"
+                placeholder="Enter your email address"
+                formControlName="email"
+              />
+            </div>
+            <div class="fr">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                formControlName="password"
+              />
+            </div>
+          </div>
+          <div class="fr">
+            <button type="submit" class="full" [disabled]="!registerForm.valid">
+              Register for free
+            </button>
+          </div>
+        </form>
+      </div>
+      <p class="help">
+        Already have an account? <a routerLink="/auth/login">Login</a>
+      </p>
+    </div>
+  </div>
+</div>

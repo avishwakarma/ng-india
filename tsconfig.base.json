@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ng-india/cache": ["libs/cache/src/index.ts"],
+      "@ng-india/config": ["libs/config/src/index.ts"],
+      "@ng-india/constant": ["libs/constant/index.ts"],
+      "@ng-india/jwt": ["libs/jwt/src/index.ts"],
+      "@ng-india/landlord": ["libs/landlord/src/index.ts"],
+      "@ng-india/models": ["libs/models/src/index.ts"],
+      "@ng-india/types": ["libs/types/index.ts"],
+      "@ng-india/utils": ["libs/utils/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

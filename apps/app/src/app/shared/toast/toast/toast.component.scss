@@ -1,0 +1,28 @@
+@import "../../../../styles/variables";
+
+.toast {
+  width: auto;
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: $shadow;
+  border: 1.5px solid $blue;
+  transition: top 0.3s ease-in;
+
+  &.shown {
+    top: 18px;
+  }
+
+  &.error {
+    border-color: $red;
+  }
+
+  .f12 {
+    margin-top: 4px;
+    color: rgba($black, 0.5);
+  }
+}

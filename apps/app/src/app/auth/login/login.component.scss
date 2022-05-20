@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+
+.login {
+  .box {
+    width: 392px;
+
+    .form {
+      margin-top: 24px;
+    }
+  }
+
+  .help {
+    text-align: center;
+    margin-top: 24px;
+    color: rgba($black, 0.5);
+
+    a {
+      font-weight: 600;
+    }
+  }
+}
