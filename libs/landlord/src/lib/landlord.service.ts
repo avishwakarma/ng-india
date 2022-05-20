@@ -146,6 +146,8 @@ export class LandlordService {
       dbName: `${workspace}`,
     });
 
+    await this.cache.set<string>(workspace, JSON.stringify(client.toJSON()));
+
     const user = await this.createAdminUser(connection, client.id, userData);
 
     return { client, user };
