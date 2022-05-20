@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   auth: "http://localhost:4001",
   api: "http://localhost:4000",
-  app: "localhost",
+  app: "localhost.com",
 };
 
 /*

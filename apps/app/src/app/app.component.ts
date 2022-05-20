@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -16,10 +22,10 @@ import { environment } from "../environments/environment";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   private _authSubscription: Subscription;
-  private win: Window | undefined;
+  isLoading = false;
 
   @ViewChild("iframe", { static: true }) iframe: ElementRef | undefined;
 
@@ -33,7 +39,6 @@ export class AppComponent implements OnInit {
 
     this._authSubscription = this.session.subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
-
       this.handleSubdomainLogin();
     });
   }
@@ -48,8 +53,6 @@ export class AppComponent implements OnInit {
           this.title.set(routeConfig.data["title"]);
         }
       });
-
-    this.win = this.iframe?.nativeElement.contentWindow;
   }
 
   private child(route: ActivatedRoute): ActivatedRoute {
@@ -69,6 +72,7 @@ export class AppComponent implements OnInit {
       return this.session.redirect();
     }
 
+    this.isLoading = true;
     if (window.location.hostname === environment.app) {
       const user = this.session.user;
       const element: HTMLIFrameElement | undefined = this.iframe?.nativeElement;
@@ -92,6 +96,11 @@ export class AppComponent implements OnInit {
       }
     } else {
       this.session.redirect();
+      this.isLoading = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    this._authSubscription.unsubscribe();
   }
 }
