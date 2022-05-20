@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { WORKSPACE_REGEX } from "@ng-india/constant";
 import { restrictWorkspaceValue } from "../../app.utils";
@@ -10,7 +10,7 @@ import { AuthService } from "../auth.service";
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     workspace: new FormControl("", {
       validators: [
@@ -29,6 +29,12 @@ export class RegisterComponent {
   });
 
   constructor(private auth: AuthService, private session: SessionService) {}
+
+  ngOnInit(): void {
+    if (this.session.token) {
+      this.session.redirect();
+    }
+  }
 
   get workspace() {
     return this.registerForm.get("workspace");

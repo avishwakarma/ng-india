@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iFrame</title>
+
+    <script type="text/javascript">
+      console.log("iframe", window);
+      window.onmessage = function (e) {
+        // if (e.origin !== "http://mathify.co") {
+        //   return;
+        // }
+
+        var payload = JSON.parse(e.data);
+        sessionStorage.setItem("_token", payload.token);
+        sessionStorage.setItem("_refreshToken", payload.refreshToken);
+      };
+    </script>
+  </head>
+</html>

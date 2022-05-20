@@ -85,6 +85,9 @@ export class SessionService {
     this._user = this.storage.get("_user");
     this._refreshToken = this.storage.get("_refreshToken");
     this._subject.next(true);
+  }
+
+  redirect() {
     this.router.navigate(["/"]);
   }
 

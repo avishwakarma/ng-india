@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { WORKSPACE_REGEX } from "@ng-india/constant";
 import { SessionService } from "../../shared/session.service";
@@ -10,7 +10,7 @@ import { AuthService } from "../auth.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
     workspace: new FormControl("", [
       Validators.required,
@@ -25,6 +25,12 @@ export class LoginComponent {
     private toast: ToastService,
     private session: SessionService
   ) {}
+
+  ngOnInit(): void {
+    if (this.session.token) {
+      this.session.redirect();
+    }
+  }
 
   login() {
     if (!this.loginForm.valid) {

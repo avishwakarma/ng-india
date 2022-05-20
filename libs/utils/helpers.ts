@@ -66,6 +66,8 @@ export const nameFromSlug = (slug: string) => {
 export const loadConfig = () => {
   const path: string = resolve(process.cwd(), ".env.local");
 
+  console.log(path);
+
   if (existsSync(path)) {
     config({
       path,
