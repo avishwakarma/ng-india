@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { WORKSPACE_REGEX } from "@ng-india/constant";
+import { environment } from "../../../environments/environment";
 import { SessionService } from "../../shared/session.service";
 import { ToastService } from "../../shared/toast/toast.service";
 import { AuthService } from "../auth.service";
@@ -11,6 +12,7 @@ import { AuthService } from "../auth.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
+  hasWorkspace = false;
   loginForm: FormGroup = new FormGroup({
     workspace: new FormControl("", [
       Validators.required,
@@ -28,7 +30,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.session.token) {
-      this.session.redirect();
+      return this.session.redirect();
+    }
+
+    const workspace = window.location.hostname.replace(environment.app, "");
+
+    if (workspace) {
+      this.hasWorkspace = true;
+      this.loginForm.get("workspace")?.setValue(workspace.replace(".", ""));
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { WORKSPACE_REGEX } from "@ng-india/constant";
+import { environment } from "../../../environments/environment";
 import { restrictWorkspaceValue } from "../../app.utils";
 import { SessionService } from "../../shared/session.service";
 import { AuthService } from "../auth.service";
@@ -32,7 +33,13 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.session.token) {
-      this.session.redirect();
+      return this.session.redirect();
+    }
+
+    const workspace = window.location.hostname.replace(environment.app, "");
+
+    if (workspace) {
+      this.session.redirect(["/auth/login"]);
     }
   }
 

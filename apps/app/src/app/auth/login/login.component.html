@@ -36,7 +36,7 @@
           </div>
         </form>
       </div>
-      <p class="help">
+      <p class="help" *ngIf="!hasWorkspace">
         Don't have an account? <a routerLink="/auth/register">Register</a>
       </p>
     </div>

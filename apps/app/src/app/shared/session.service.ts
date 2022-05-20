@@ -87,8 +87,8 @@ export class SessionService {
     this._subject.next(true);
   }
 
-  redirect() {
-    this.router.navigate(["/"]);
+  redirect(path: Array<string> = ["/"]) {
+    this.router.navigate(path);
   }
 
   destroy() {
