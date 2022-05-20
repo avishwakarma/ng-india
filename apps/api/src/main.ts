@@ -4,10 +4,13 @@
  */
 
 import { NestFactory } from "@nestjs/core";
+import { loadConfig } from "@ng-india/utils";
 
 import { ApiModule } from "./api.module";
 
 async function bootstrap() {
+  loadConfig();
+
   const app = await NestFactory.create(ApiModule, {
     cors: {
       origin: "*",

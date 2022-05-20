@@ -4,10 +4,13 @@
  */
 
 import { NestFactory } from "@nestjs/core";
+import { loadConfig } from "@ng-india/utils";
 
 import { AuthModule } from "./auth.module";
 
 async function bootstrap() {
+  loadConfig();
+
   const app = await NestFactory.create(AuthModule, {
     cors: {
       origin: "*",

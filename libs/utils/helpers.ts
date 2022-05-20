@@ -1,6 +1,9 @@
 import { hash, compare, genSalt } from "bcrypt";
 import { v1 as uuidv1 } from "uuid";
 import { randomBytes } from "crypto";
+import { config } from "dotenv";
+import { existsSync } from "fs";
+import { resolve } from "path";
 
 /**
  * generateSalt
@@ -58,4 +61,14 @@ export const nameFromSlug = (slug: string) => {
         .map((s: string) => `${s.charAt(0).toUpperCase()}${s.slice(1)}`)
         .join(" ")
     : `${slug.charAt(0).toUpperCase()}${slug.slice(1)}`;
+};
+
+export const loadConfig = () => {
+  const path: string = resolve(process.cwd(), ".env.local");
+
+  if (existsSync(path)) {
+    config({
+      path,
+    });
+  }
 };
